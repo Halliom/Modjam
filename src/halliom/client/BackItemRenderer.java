@@ -35,16 +35,21 @@ public class BackItemRenderer extends RenderPlayer
 			
 			rotateItemAccordingToPlayer((EntityPlayer)entity);
 			
-			item1.doRender(item, 0, -0.6, 0.2, 1, 1);
+			item1.doRender(item, 0, -0.6, -0.2, 1, 1);
 		}
 		GL11.glPopMatrix();
 	}
 	
 	private void rotateItemAccordingToPlayer(EntityPlayer player)
 	{
-		System.out.println(player.rotationYaw);
+		System.out.println(player.renderYawOffset);
+		float rotationY = player.renderYawOffset;
+		if (player.renderYawOffset > 360|| player.renderYawOffset < -360)
+			rotationY = player.renderYawOffset % 360;
+		GL11.glRotatef(-rotationY, 0, 1, 0);
 		
-		GL11.glRotatef(90, 1, 0, 0);
+		if (player.isSneaking())
+			GL11.glRotatef(20, 1, 0, 0);
 	}
 
 }
