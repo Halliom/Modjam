@@ -14,11 +14,13 @@ import org.lwjgl.opengl.GL11;
 public class BackItemRenderer extends RenderPlayer
 {
 	
-	private RenderItem item1 = new RenderItem();
+	private RenderItem item1Renderer = new RenderItem();
+	private RenderItem item2Renderer = new RenderItem();
 	
 	public BackItemRenderer() 
 	{
-		item1.setRenderManager(RenderManager.instance);
+		item1Renderer.setRenderManager(RenderManager.instance);
+		item2Renderer.setRenderManager(RenderManager.instance);
 	}
 	
 	@Override
@@ -27,22 +29,27 @@ public class BackItemRenderer extends RenderPlayer
 		super.doRender(entity, d0, d1, d2, f, f1);
 		GL11.glPushMatrix();
 		{
-			EntityItem item = new EntityItem(entity.worldObj);
-			item.hoverStart = 0f;
-			item.setEntityItemStack(new ItemStack(Item.swordDiamond));
+			EntityItem item1 = new EntityItem(entity.worldObj);
+			EntityItem item2 = new EntityItem(entity.worldObj);
+			
+			item1.hoverStart = 0f;
+			item2.hoverStart = 0f;
+			
+			item1.setEntityItemStack(new ItemStack(Item.pickaxeDiamond));
+			item2.setEntityItemStack(new ItemStack(Item.swordDiamond));
 			
 			GL11.glScalef(1.2F, 1.2F, 1.2F);
 			
 			rotateItemAccordingToPlayer((EntityPlayer)entity);
-			
-			item1.doRender(item, 0, -0.6, -0.2, 1, 1);
+			item1Renderer.doRender(item1, 0, -0.6, -0.2, 1, 1);
+			GL11.glRotatef(270, 0, 0, 1);
+			item2Renderer.doRender(item2, 0.4, -0.2, -0.2, 1, 1);
 		}
 		GL11.glPopMatrix();
 	}
 	
 	private void rotateItemAccordingToPlayer(EntityPlayer player)
 	{
-		System.out.println(player.renderYawOffset);
 		float rotationY = player.renderYawOffset;
 		if (player.renderYawOffset > 360|| player.renderYawOffset < -360)
 			rotationY = player.renderYawOffset % 360;
