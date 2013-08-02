@@ -1,5 +1,6 @@
 package halliom.core;
 
+import halliom.common.item.Items;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -27,6 +28,9 @@ public class Backpacked
 	@EventHandler
 	public void load(FMLInitializationEvent event)
 	{
+		//Instantiate the items and register them
+		Items.initializeItems();
+		
 		
 	}
 }
