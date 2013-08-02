@@ -32,11 +32,11 @@ public class KeyBindingHandler extends KeyHandler
 			{
 				if (kb.keyDescription.equals("Change Slot 1"))
 				{
-					
+					System.out.println(kb.keyDescription);
 				}
 				if (kb.keyDescription.equals("Change Slot 1"))
 				{
-					
+					System.out.println(kb.keyDescription);
 				}
 			}
 		}
