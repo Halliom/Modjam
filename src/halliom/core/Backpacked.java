@@ -1,21 +1,17 @@
 package halliom.core;
 
-import org.lwjgl.input.Keyboard;
-
-import net.minecraft.client.settings.KeyBinding;
 import halliom.common.item.Items;
-import halliom.core.keybinding.KeyBindingHandler;
-import cpw.mods.fml.client.registry.KeyBindingRegistry;
-import cpw.mods.fml.common.FMLCommonHandler;
+import halliom.core.packet.PacketHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.common.network.NetworkMod;
 
 @Mod(modid = "Backpacked", name = "Backpacked", version = "DEV")
+@NetworkMod(channels = {"DAJO"}, clientSideRequired = true, serverSideRequired = false, packetHandler = PacketHandler.class)
 public class Backpacked 
 {
 	//The mod instance
