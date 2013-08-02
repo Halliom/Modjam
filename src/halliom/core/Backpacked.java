@@ -31,6 +31,6 @@ public class Backpacked
 		//Instantiate the items and register them
 		Items.initializeItems();
 		
-		
+		proxy.registerEntityRendering();
 	}
 }
