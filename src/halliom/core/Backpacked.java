@@ -38,12 +38,10 @@ public class Backpacked
 		//Instantiate the items and register them
 		Items.initializeItems();
 		
+		//Register the rendering for all entities
 		proxy.registerEntityRendering();
 		
-		if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT)
-		{
-			KeyBinding[] keybindings = new KeyBinding[]{new KeyBinding("Change Slot 1", Keyboard.KEY_Z), new KeyBinding("Change Slot 2", Keyboard.KEY_X)};
-			KeyBindingRegistry.registerKeyBinding(new KeyBindingHandler(keybindings));
-		}
+		//Register the keybinding handler
+		proxy.registerKeyBindingHandler();
 	}
 }

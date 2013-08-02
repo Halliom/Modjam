@@ -1,19 +1,26 @@
 package halliom.core.keybinding;
 
+import java.util.ArrayList;
 import java.util.EnumSet;
 
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.entity.player.EntityPlayer;
+
+import org.lwjgl.input.Keyboard;
+
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.client.registry.KeyBindingRegistry.KeyHandler;
 import cpw.mods.fml.common.TickType;
 
 public class KeyBindingHandler extends KeyHandler
 {
+	
+	private static ArrayList<Boolean> repeatings = new ArrayList<Boolean>();
+	private static ArrayList<KeyBinding> keyBinds = new ArrayList<KeyBinding>();
 
-	public KeyBindingHandler(KeyBinding[] keyBindings) 
+	public KeyBindingHandler() 
 	{
-		super(keyBindings);
+		super(getKeys(), getRepeatings());
 	}
 
 	@Override
@@ -32,11 +39,11 @@ public class KeyBindingHandler extends KeyHandler
 			{
 				if (kb.keyDescription.equals("Change Slot 1"))
 				{
-					System.out.println(kb.keyDescription);
+					
 				}
-				if (kb.keyDescription.equals("Change Slot 1"))
+				if (kb.keyDescription.equals("Change Slot 2"))
 				{
-					System.out.println(kb.keyDescription);
+					
 				}
 			}
 		}
@@ -52,6 +59,27 @@ public class KeyBindingHandler extends KeyHandler
 	public EnumSet<TickType> ticks() 
 	{
 		return EnumSet.of(TickType.CLIENT);
+	}
+	
+	private static KeyBinding[] getKeys()
+	{
+		keyBinds.add(new KeyBinding("Change Slot 1", Keyboard.KEY_Z));
+		keyBinds.add(new KeyBinding("Change Slot 2", Keyboard.KEY_X));
+		repeatings.add(false);
+		repeatings.add(false);
+		return keyBinds.toArray(new KeyBinding[keyBinds.size()]);
+	}
+	
+	private static boolean[] getRepeatings()
+	{
+		boolean[] boolArray = new boolean[repeatings.size()];
+		
+		for (byte i = 0; i < repeatings.size(); i++)
+		{
+			boolArray[i] = repeatings.get(0);
+		}
+		
+		return boolArray;
 	}
 	
 }

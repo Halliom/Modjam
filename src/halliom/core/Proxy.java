@@ -13,4 +13,9 @@ public class Proxy
 		
 	}
 	
+	public void registerKeyBindingHandler()
+	{
+		
+	}
+	
 }
