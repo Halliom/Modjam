@@ -1,6 +1,7 @@
 package halliom.core.packet;
 
 import halliom.common.backpack.BackpackData;
+import halliom.common.backpack.BackplateContainer;
 import halliom.core.packet.PacketHandler.PacketType;
 
 import java.io.DataInputStream;
@@ -52,7 +53,11 @@ public class PacketSwitch extends PacketBP
 	public void performPacketAction(Player player) 
 	{
 		EntityPlayer entPlayer = (EntityPlayer) player;
-		BackpackData.playerData.containsKey(entPlayer);
+		if (!BackpackData.playerData.containsKey(entPlayer))
+		{
+			BackpackData.playerData.put(entPlayer, new BackplateContainer());
+		}
+		entPlayer.inventory.mainInventory[entPlayer.inventory.currentItem] = BackpackData.playerData.get(entPlayer).performSwitch(pos, entPlayer.getHeldItem());
 	}
 
 	@Override

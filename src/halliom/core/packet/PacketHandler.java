@@ -40,14 +40,10 @@ public class PacketHandler implements IPacketHandler
 		{
 			int id = data.readInt();
 			
-			switch(id)
-			{
-				case 1:
-					PacketSwitch pkt = new PacketSwitch();
-					pkt.readPacketData(data);
-					pkt.performPacketAction(player);
-					break;
-			}
+			PacketSwitch pkt = new PacketSwitch();
+			pkt.readPacketData(data);
+			pkt.performPacketAction(player);
+//			break;
 		}catch(Exception e)
 		{
 			

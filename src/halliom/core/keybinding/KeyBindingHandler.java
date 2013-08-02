@@ -1,5 +1,10 @@
 package halliom.core.keybinding;
 
+import halliom.common.backpack.BackpackData;
+import halliom.common.backpack.BackplateContainer;
+import halliom.core.packet.PacketHandler;
+import halliom.core.packet.PacketSwitch;
+
 import java.util.ArrayList;
 import java.util.EnumSet;
 
@@ -11,6 +16,7 @@ import org.lwjgl.input.Keyboard;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.client.registry.KeyBindingRegistry.KeyHandler;
 import cpw.mods.fml.common.TickType;
+import cpw.mods.fml.common.network.PacketDispatcher;
 
 public class KeyBindingHandler extends KeyHandler
 {
@@ -39,11 +45,11 @@ public class KeyBindingHandler extends KeyHandler
 			{
 				if (kb.keyDescription.equals("Change Slot 1"))
 				{
-					
+					PacketDispatcher.sendPacketToServer(PacketHandler.getPacket(new PacketSwitch(0)));
 				}
 				if (kb.keyDescription.equals("Change Slot 2"))
 				{
-					
+					PacketDispatcher.sendPacketToServer(PacketHandler.getPacket(new PacketSwitch(1)));
 				}
 			}
 		}

@@ -1,13 +1,13 @@
 package halliom.client;
 
+import halliom.common.backpack.BackpackData;
+import halliom.common.backpack.BackplateContainer;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.entity.RenderPlayer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 
 import org.lwjgl.opengl.GL11;
 
@@ -29,21 +29,31 @@ public class BackItemRenderer extends RenderPlayer
 		super.doRender(entity, d0, d1, d2, f, f1);
 		GL11.glPushMatrix();
 		{
-			EntityItem item1 = new EntityItem(entity.worldObj);
-			EntityItem item2 = new EntityItem(entity.worldObj);
+			if (!BackpackData.playerData.containsKey((EntityPlayer)entity))
+			{
+				BackpackData.playerData.put((EntityPlayer)entity, new BackplateContainer());
+			}
 			
-			item1.hoverStart = 0f;
-			item2.hoverStart = 0f;
-			
-			item1.setEntityItemStack(new ItemStack(Item.pickaxeDiamond));
-			item2.setEntityItemStack(new ItemStack(Item.swordDiamond));
+			BackplateContainer container = BackpackData.playerData.get((EntityPlayer)entity);
 			
 			GL11.glScalef(1.2F, 1.2F, 1.2F);
-			
 			rotateItemAccordingToPlayer((EntityPlayer)entity);
-			item1Renderer.doRender(item1, 0, -0.6, -0.2, 1, 1);
-			GL11.glRotatef(270, 0, 0, 1);
-			item2Renderer.doRender(item2, 0.4, -0.2, -0.2, 1, 1);
+			
+			if (container.getLeftItem() != null)
+			{
+				EntityItem item1 = new EntityItem(entity.worldObj);
+				item1.hoverStart = 0f;
+				item1.setEntityItemStack(container.getLeftItem());
+				item1Renderer.doRender(item1, 0, -0.6, -0.15, 1, 1);
+			}
+			if (container.getRightItem() != null)
+			{
+				EntityItem item2 = new EntityItem(entity.worldObj);
+				item2.hoverStart = 0f;
+				item2.setEntityItemStack(container.getRightItem());
+				GL11.glRotatef(270, 0, 0, 1);
+				item2Renderer.doRender(item2, 0.4, -0.2, -0.2, 1, 1);
+			}
 		}
 		GL11.glPopMatrix();
 	}
