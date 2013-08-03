@@ -6,6 +6,8 @@ import halliom.core.Backpacked;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
@@ -22,6 +24,12 @@ public class BlockQuartzCauldron extends BlockContainer
 	public TileEntity createNewTileEntity(World world) 
 	{
 		return new TileQuartzCauldron();
+	}
+	
+	@Override
+	public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entityLiving, ItemStack item) 
+	{
+		
 	}
 	
 	@Override
