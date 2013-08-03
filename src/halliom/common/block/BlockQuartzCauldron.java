@@ -1,6 +1,8 @@
 package halliom.common.block;
 
+import halliom.client.ClientProxy;
 import halliom.common.tile.TileQuartzCauldron;
+import halliom.core.Backpacked;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
@@ -20,6 +22,24 @@ public class BlockQuartzCauldron extends BlockContainer
 	public TileEntity createNewTileEntity(World world) 
 	{
 		return new TileQuartzCauldron();
+	}
+	
+	@Override
+	public boolean isOpaqueCube() 
+	{
+		return false;
+	}
+	
+	@Override
+	public boolean renderAsNormalBlock() 
+	{
+		return false;
+	}
+	
+	@Override
+	public int getRenderType() 
+	{
+		return ClientProxy.QUARTZ_CAULDRON_RENDER_ID;
 	}
 	
 }
