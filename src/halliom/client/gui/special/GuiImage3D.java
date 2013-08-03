@@ -22,16 +22,16 @@ public class GuiImage3D extends GuiObject3D
 		switch(face)
 		{
 			case NORTH:
-				drawTextureNorthFromVector(getBoundingBox(), new Vector3f((float) x, (float) y, (float) z), 1, 1, image);
+				drawTextureNorthFromVector(getBoundingBox(), new Vector3f((float) x, (float) y, (float) z), image);
 				break;
 			case SOUTH:
-				drawTextureSouthFromVector(getBoundingBox(), new Vector3f((float) x, (float) y, (float) z), 1, 1, image);
+				drawTextureSouthFromVector(getBoundingBox(), new Vector3f((float) x, (float) y, (float) z), image);
 				break;
 			case WEST:
-				drawTextureWestFromVector(getBoundingBox(), new Vector3f((float) x, (float) y, (float) z), 1, 1, image);
+				drawTextureWestFromVector(getBoundingBox(), new Vector3f((float) x, (float) y, (float) z), image);
 				break;
 			case EAST:
-				drawTextureEastFromVector(getBoundingBox(), new Vector3f((float) x, (float) y, (float) z), 1, 1, image);
+				drawTextureEastFromVector(getBoundingBox(), new Vector3f((float) x, (float) y, (float) z), image);
 		}
 	}
 

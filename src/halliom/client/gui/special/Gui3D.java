@@ -25,7 +25,7 @@ public class Gui3D
 		openGUI = this;
 		this.face = face.ordinal();
 		this.worldPos = worldPos;
-		objects.add(new GuiImage3D(new Box(new Vector3f(0,1,0), new Vector3f(1,1,1)), "textures/gui/container/generic_54.png"));
+		objects.add(new GuiImage3D(new Box(new Vector3f(0,0,0), new Vector3f(1,1,1)), "textures/gui/container/generic_54.png"));
 	}
 	
 	public void handleClick(Vector3f lookVec, int face)
@@ -33,11 +33,11 @@ public class Gui3D
 		for (GuiObject3D comp : objects)
 		{
 			Vector3f lookShortened = null;
-			System.out.println("Face: " + face + " dist " + (worldPos.getZ() - lookVec.getZ()));
-			if (face == 0 && worldPos.getZ() - lookVec.getZ() <= 0)
-				lookShortened = lookVec.sub(new Vector3f(0, 0, worldPos.getZ() - lookVec.getZ()));
+			System.out.println("Face: " + face + " dist " + (lookVec.getZ() - worldPos.getZ()));
+			if (face == 0 && lookVec.getZ() - worldPos.getZ() >= 0)
+				lookShortened = lookVec.sub(new Vector3f(0, 0, lookVec.getZ() - worldPos.getZ()));
 			
-			if (lookShortened != null && comp.isVectorInside(lookShortened)) System.out.println("Hoooraaaaayyy");
+			if (lookShortened != null && comp.isVectorInside(comp.translateBox(worldPos), lookShortened)) System.out.println("Hoooraaaaayyy");
 			System.out.println(lookShortened);
 		}
 	}

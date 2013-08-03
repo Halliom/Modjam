@@ -26,6 +26,15 @@ public abstract class GuiObject3D
 		return boundingBox.isVectorInSide(vector);
 	}
 	
+	public boolean isVectorInside(Box box, Vector3f vector)
+	{
+		System.out.println("Starting vector maths");
+		System.out.println("Vector " + vector);
+		System.out.println("StartVec: " + box.getStartPos());
+		System.out.println("EndVec: " + box.getEndPos());
+		return box.isVectorInSide(vector);
+	}
+	
 	public Box translateBox(Vector3f pos)
 	{
 		Vector3f startVec = pos.add(boundingBox.getStartPos());
@@ -53,12 +62,14 @@ public abstract class GuiObject3D
         GL11.glPopMatrix();
 	}
 	
-	protected void drawTextureNorthFromVector(Box boundingBox, Vector3f translation, float width, float height, String texture)
+	protected void drawTextureNorthFromVector(Box boundingBox, Vector3f translation, String texture)
 	{
 		FMLClientHandler.instance().getClient().renderEngine.func_110577_a(new ResourceLocation(texture));
 		GL11.glPushMatrix();
 		GL11.glDisable(GL11.GL_CULL_FACE);
 		{
+			float width = boundingBox.getEndPos().getX() - boundingBox.getStartPos().getX();
+			float height = boundingBox.getEndPos().getY() - boundingBox.getStartPos().getY();
 			GL11.glEnable(GL11.GL_BLEND);
 			GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 			Vector3f sumVec = boundingBox.getStartPos().add(translation);
@@ -76,12 +87,14 @@ public abstract class GuiObject3D
         GL11.glPopMatrix();
 	}
 	
-	protected void drawTextureSouthFromVector(Box boundingBox, Vector3f translation, float width, float height, String texture)
+	protected void drawTextureSouthFromVector(Box boundingBox, Vector3f translation, String texture)
 	{
 		FMLClientHandler.instance().getClient().renderEngine.func_110577_a(new ResourceLocation(texture));
 		GL11.glPushMatrix();
 		GL11.glDisable(GL11.GL_CULL_FACE);
 		{
+			float width = boundingBox.getEndPos().getX() - boundingBox.getStartPos().getX();
+			float height = boundingBox.getEndPos().getY() - boundingBox.getStartPos().getY(); 
 			GL11.glEnable(GL11.GL_BLEND);
 			GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 			Vector3f sumVec = boundingBox.getStartPos().add(translation);
@@ -99,12 +112,14 @@ public abstract class GuiObject3D
         GL11.glPopMatrix();
 	}
 	
-	protected void drawTextureWestFromVector(Box boundingBox, Vector3f translation, float width, float height, String texture)
+	protected void drawTextureWestFromVector(Box boundingBox, Vector3f translation, String texture)
 	{
 		FMLClientHandler.instance().getClient().renderEngine.func_110577_a(new ResourceLocation(texture));
 		GL11.glPushMatrix();
 		GL11.glDisable(GL11.GL_CULL_FACE);
 		{
+			float width = boundingBox.getEndPos().getX() - boundingBox.getStartPos().getX();
+			float height = boundingBox.getEndPos().getY() - boundingBox.getStartPos().getY();
 			GL11.glEnable(GL11.GL_BLEND);
 			GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 			Vector3f sumVec = boundingBox.getStartPos().add(translation);
@@ -122,12 +137,14 @@ public abstract class GuiObject3D
         GL11.glPopMatrix();
 	}
 	
-	protected void drawTextureEastFromVector(Box boundingBox, Vector3f translation, float width, float height, String texture)
+	protected void drawTextureEastFromVector(Box boundingBox, Vector3f translation, String texture)
 	{
 		FMLClientHandler.instance().getClient().renderEngine.func_110577_a(new ResourceLocation(texture));
 		GL11.glPushMatrix();
 		GL11.glDisable(GL11.GL_CULL_FACE);
 		{
+			float width = boundingBox.getEndPos().getX() - boundingBox.getStartPos().getX();
+			float height = boundingBox.getEndPos().getY() - boundingBox.getStartPos().getY();
 			GL11.glEnable(GL11.GL_BLEND);
 			GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 			Vector3f sumVec = boundingBox.getStartPos().add(translation);

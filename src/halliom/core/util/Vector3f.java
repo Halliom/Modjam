@@ -75,6 +75,12 @@ public class Vector3f
 		return new Vector3f(x / amount, y / amount, z / amount);
 	}
 	
+	@Override
+	public String toString() 
+	{
+		return String.format("Vector3f @: x:%f y:%f z:%f", x, y, z);
+	}
+	
 	public float getX() 
 	{
 		return x;

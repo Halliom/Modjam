@@ -14,9 +14,9 @@ public class Box
 	
 	public boolean isVectorInSide(Vector3f vector)
 	{
-		if (!(vector.getX() >= startPos.getX()) && !(vector.getX() <= endPos.getX())) return false;
-		if (!(vector.getY() >= startPos.getY()) && !(vector.getY() <= endPos.getY())) return false;
-		if (!(vector.getZ() >= startPos.getZ()) && !(vector.getZ() <= endPos.getZ())) return false;
+		if (!(vector.getX() >= startPos.getX()) || !(vector.getX() <= endPos.getX())) return false;
+		if (!(vector.getY() >= startPos.getY()) || !(vector.getY() <= endPos.getY())) return false;
+		if (!(vector.getZ() >= startPos.getZ()) || !(vector.getZ() <= endPos.getZ())) return false;
 		return true;
 	}
 
