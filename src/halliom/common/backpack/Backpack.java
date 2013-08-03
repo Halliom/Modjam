@@ -38,6 +38,7 @@ public class Backpack
 			if (modules[i] != null)
 			{
 				NBTTagCompound moduleTag = new NBTTagCompound();
+				moduleTag.setString("bp_id_to_class", BackpackModule.getStringFromClass(modules[i].getClass()));
 				modules[i].writeToNBT(moduleTag);
 				tag.setCompoundTag(String.valueOf(i), moduleTag);
 			}
@@ -51,6 +52,15 @@ public class Backpack
 			if (tag.hasKey(String.valueOf(i)))
 			{
 				NBTTagCompound moduleTag = tag.getCompoundTag(String.valueOf(i));
+				Class clazz = BackpackModule.getClassFromString(moduleTag.getString("bp_id_to_class"));
+				try
+				{
+					BackpackModule bp_module = (BackpackModule) clazz.newInstance();
+					
+				}catch(Exception e)
+				{
+					
+				}
 				//instantiate the module from nbtdata
 				modules[i].readFromNBT(moduleTag);
 			}

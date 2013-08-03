@@ -12,24 +12,19 @@ public class BackpackModule
 	
 	protected final int type;
 	
-	private static HashMap<String, Class> classMap = new HashMap<String, Class>();
+	private static HashMap<String, Class> toClassMap = new HashMap<String, Class>();
+	private static HashMap<Class, String> fromClassMap = new HashMap<Class, String>();
 	
 	private boolean needsUpdate = false;
 	
 	public BackpackModule(int type)
 	{
 		this.type = type;
-		register(this);
 	}
 
 	public int getType() 
 	{
 		return type;
-	}
-	
-	public String getUID()
-	{
-		return this.getClass().getName();
 	}
 	
 	public void onUpdate()
@@ -57,11 +52,19 @@ public class BackpackModule
 		this.needsUpdate = needsUpdate;
 	}
 	
-	private static void register(BackpackModule module)
+	public static void registerModule(String key, Class<? extends BackpackModule> clazz)
 	{
-		if (!classMap.containsKey(module.getUID()))
-		{
-			classMap.put(module.getUID(), module.getClass());
-		}
+		toClassMap.put(key, clazz);
+		fromClassMap.put(clazz, key);
+	}
+	
+	public static String getStringFromClass(Class<? extends BackpackModule> clazz)
+	{
+		return fromClassMap.get(clazz);
+	}
+	
+	public static Class getClassFromString(String id)
+	{
+		return toClassMap.get(id);
 	}
 }
