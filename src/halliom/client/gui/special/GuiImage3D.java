@@ -17,7 +17,7 @@ public class GuiImage3D extends GuiObject3D
 	@Override
 	public void render(double x, double y, double z, float f) 
 	{
-		drawTexture((float) x, (float) y, (float) z, 1, 1, image);
+		drawTextureFromVector(getBoundingBox(), new Vector3f((float) x, (float) y, (float) z), 1, 1, image);
 	}
 
 	@Override

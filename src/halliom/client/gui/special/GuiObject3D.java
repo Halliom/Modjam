@@ -45,21 +45,30 @@ public abstract class GuiObject3D
         GL11.glPopMatrix();
 	}
 	
-	protected void drawTextureFromVector(Vector3f vector, float width, float height, String texture)
+	protected void drawTextureFromVector(Box boundingBox, Vector3f translation, float width, float height, String texture)
 	{
 		FMLClientHandler.instance().getClient().renderEngine.func_110577_a(new ResourceLocation(texture));
 		GL11.glPushMatrix();
+		GL11.glDisable(GL11.GL_CULL_FACE);
 		{
-			GL11.glDisable(GL11.GL_CULL_FACE);
+			Vector3f sumVec = boundingBox.getStartPos().add(translation);
 			Tessellator tessellator = Tessellator.instance;
 			tessellator.startDrawingQuads();
-			tessellator.addVertexWithUV(vector.getX(), vector.getY() + height, z, 0, 1);
-			tessellator.addVertexWithUV(vector.getX() + width, y + height, z, 1, 1);
-			tessellator.addVertexWithUV(vector.getX() + width, y, z, 1, 0);
-			tessellator.addVertexWithUV(vector.getX(), y, z, 0, 0);
+			tessellator.addVertexWithUV(sumVec.getX(), sumVec.getY() + height, sumVec.getZ(), 1, 0);
+			tessellator.addVertexWithUV(sumVec.getX() + width, sumVec.getY() + height, sumVec.getZ(), 0, 0);
+			tessellator.addVertexWithUV(sumVec.getX() + width, sumVec.getY(), sumVec.getZ(), 0, 1);
+			tessellator.addVertexWithUV(sumVec.getX(), sumVec.getY(), sumVec.getZ(), 1, 1);
 			tessellator.draw();
 		}
         GL11.glEnable(GL11.GL_CULL_FACE);
         GL11.glPopMatrix();
+	}
+
+	public Box getBoundingBox() {
+		return boundingBox;
+	}
+
+	public void setBoundingBox(Box boundingBox) {
+		this.boundingBox = boundingBox;
 	}
 }
