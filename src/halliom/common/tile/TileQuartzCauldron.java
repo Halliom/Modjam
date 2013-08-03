@@ -8,7 +8,7 @@ public class TileQuartzCauldron extends TileEntity
 	
 	private ForgeDirection facing;
 
-	public ForgeDirection getFacing() 
+	public ForgeDirection getFacing()
 	{
 		return facing;
 	}

@@ -9,7 +9,9 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ForgeDirection;
 
 public class BlockQuartzCauldron extends BlockContainer
 {
@@ -29,7 +31,24 @@ public class BlockQuartzCauldron extends BlockContainer
 	@Override
 	public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entityLiving, ItemStack item) 
 	{
+		int rotation = MathHelper.floor_double(entityLiving.rotationYaw * 4f / 360f + 0.5d) & 3;
+		TileQuartzCauldron tile = (TileQuartzCauldron) world.getBlockTileEntity(x, y, z);
 		
+		switch(rotation)
+		{
+			case 0:
+				tile.setFacing(ForgeDirection.NORTH);
+				break;
+			case 1:
+				tile.setFacing(ForgeDirection.EAST);
+				break;
+			case 2:
+				tile.setFacing(ForgeDirection.SOUTH);
+				break;
+			case 3:
+				tile.setFacing(ForgeDirection.WEST);
+				break;
+		}
 	}
 	
 	@Override
