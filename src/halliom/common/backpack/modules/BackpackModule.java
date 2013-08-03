@@ -1,5 +1,7 @@
 package halliom.common.backpack.modules;
 
+import java.util.HashMap;
+
 import net.minecraft.nbt.NBTTagCompound;
 
 public class BackpackModule 
@@ -10,16 +12,24 @@ public class BackpackModule
 	
 	protected final int type;
 	
+	private static HashMap<String, Class> classMap = new HashMap<String, Class>();
+	
 	private boolean needsUpdate = false;
 	
 	public BackpackModule(int type)
 	{
 		this.type = type;
+		register(this);
 	}
 
 	public int getType() 
 	{
 		return type;
+	}
+	
+	public String getUID()
+	{
+		return this.getClass().getName();
 	}
 	
 	public void onUpdate()
@@ -45,5 +55,13 @@ public class BackpackModule
 	private void setNeedsUpdate(boolean needsUpdate) 
 	{
 		this.needsUpdate = needsUpdate;
+	}
+	
+	private static void register(BackpackModule module)
+	{
+		if (classMap.containsKey(module.getUID()))
+		{
+			
+		}
 	}
 }

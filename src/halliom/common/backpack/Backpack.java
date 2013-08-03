@@ -48,7 +48,12 @@ public class Backpack
 	{
 		for (byte i = 0; i < modules.length; i++)
 		{
-			
+			if (tag.hasKey(String.valueOf(i)))
+			{
+				NBTTagCompound moduleTag = tag.getCompoundTag(String.valueOf(i));
+				//instantiate the module from nbtdata
+				modules[i].readFromNBT(moduleTag);
+			}
 		}
 	}
 	
