@@ -9,7 +9,7 @@ import net.minecraft.tileentity.TileEntity;
 public class QuartzCauldronRenderer extends TileEntitySpecialRenderer 
 {
 
-	Gui3D gui = new Gui3D();
+	Gui3D gui = new Gui3D(1);
 	
 	@Override
 	public void renderTileEntityAt(TileEntity tileentity, double x, double y, double z, float f)
