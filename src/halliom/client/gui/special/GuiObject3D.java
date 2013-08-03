@@ -26,6 +26,13 @@ public abstract class GuiObject3D
 		return boundingBox.isVectorInSide(vector);
 	}
 	
+	public Box translateBox(Vector3f pos)
+	{
+		Vector3f startVec = pos.add(boundingBox.getStartPos());
+		Vector3f endVec = pos.add(boundingBox.getEndPos());
+		return new Box(startVec, endVec);
+	}
+	
 	public abstract void handleClick(Vector3f vector);
 	
 	protected void drawTextureNorth(float x, float y, float z, float width, float height, String texture)

@@ -7,7 +7,7 @@ import net.minecraftforge.common.ForgeDirection;
 public class TileQuartzCauldron extends TileEntity
 {
 	
-	private ForgeDirection facing;
+	private ForgeDirection facing = ForgeDirection.NORTH;
 
 	public ForgeDirection getFacing()
 	{
