@@ -1,5 +1,7 @@
 package halliom.common.backpack.modules;
 
+import net.minecraft.nbt.NBTTagCompound;
+
 public class BackpackModule 
 {
 	public static final int TYPE_STORAGE = 0;
@@ -21,6 +23,16 @@ public class BackpackModule
 	}
 	
 	public void onUpdate()
+	{
+		
+	}
+	
+	public void writeToNBT(NBTTagCompound tag)
+	{
+		
+	}
+	
+	public void readFromNBT(NBTTagCompound tag)
 	{
 		
 	}

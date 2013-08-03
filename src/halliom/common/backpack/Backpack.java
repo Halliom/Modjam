@@ -22,9 +22,9 @@ public class Backpack
 	
 	public void update()
 	{
-		for (int i = 0; i < modules.length; i++)
+		for (byte i = 0; i < modules.length; i++)
 		{
-			if (modules[i].getNeedsUpdate())
+			if (modules[i] != null && modules[i].getNeedsUpdate())
 			{
 				modules[i].onUpdate();
 			}
@@ -33,12 +33,23 @@ public class Backpack
 	
 	public void writeToNBT(NBTTagCompound tag)
 	{
-		
+		for (byte i = 0; i < modules.length; i++)
+		{
+			if (modules[i] != null)
+			{
+				NBTTagCompound moduleTag = new NBTTagCompound();
+				modules[i].writeToNBT(moduleTag);
+				tag.setCompoundTag(String.valueOf(i), moduleTag);
+			}
+		}
 	}
 	
 	public void readFromNBT(NBTTagCompound tag)
 	{
-		
+		for (byte i = 0; i < modules.length; i++)
+		{
+			
+		}
 	}
 	
 	public NBTTagCompound destroy()
