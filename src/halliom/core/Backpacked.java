@@ -1,5 +1,6 @@
 package halliom.core;
 
+import net.minecraftforge.common.MinecraftForge;
 import halliom.common.block.Blocks;
 import halliom.common.item.Items;
 import halliom.core.packet.PacketHandler;
@@ -36,6 +37,8 @@ public class Backpacked
 		Items.initializeItems();
 		
 		Blocks.initializeBlocks();
+		
+		MinecraftForge.EVENT_BUS.register(new ClickEventHandler());
 		
 		//Register the rendering for all entities
 		proxy.registerEntityRendering();

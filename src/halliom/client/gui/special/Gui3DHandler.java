@@ -14,4 +14,14 @@ public class Gui3DHandler
 		return openGUIs.containsKey(player);
 	}
 	
+	public static void openGui(EntityPlayer player, Gui3D gui)
+	{
+		openGUIs.put(player, gui);
+	}
+	
+	public static Gui3D getOpenGui(EntityPlayer player)
+	{
+		return openGUIs.get(player);
+	}
+	
 }
