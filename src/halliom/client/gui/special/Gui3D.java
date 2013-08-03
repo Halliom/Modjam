@@ -29,7 +29,9 @@ public class Gui3D
 	{
 		for (GuiObject3D comp : objects)
 		{
-			
+			Vector3f lookShortened;
+			if (face == 0)
+				lookShortened = lookVec.sub(new Vector3f(0, 0, worldPos.getZ() - lookVec.getZ()));
 		}
 	}
 	
