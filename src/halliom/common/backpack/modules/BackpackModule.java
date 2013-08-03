@@ -10,12 +10,16 @@ public class BackpackModule
 	public static final int TYPE_UP = 1;
 	public static final int TYPE_DOWN = 2;
 	
-	protected final int type;
+	protected int type;
 	
 	private static HashMap<String, Class> toClassMap = new HashMap<String, Class>();
 	private static HashMap<Class, String> fromClassMap = new HashMap<Class, String>();
 	
 	private boolean needsUpdate = false;
+	
+	public BackpackModule() 
+	{
+	}
 	
 	public BackpackModule(int type)
 	{
@@ -34,12 +38,12 @@ public class BackpackModule
 	
 	public void writeToNBT(NBTTagCompound tag)
 	{
-		
+		tag.setInteger("Type", type);
 	}
 	
 	public void readFromNBT(NBTTagCompound tag)
 	{
-		
+		type = tag.getInteger("Type");
 	}
 
 	public boolean getNeedsUpdate() 

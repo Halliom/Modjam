@@ -1,6 +1,7 @@
 package halliom.common.backpack;
 
 import halliom.common.backpack.modules.BackpackModule;
+import halliom.core.LogHelper;
 import net.minecraft.nbt.NBTTagCompound;
 
 public class Backpack 
@@ -56,13 +57,12 @@ public class Backpack
 				try
 				{
 					BackpackModule bp_module = (BackpackModule) clazz.newInstance();
-					
+					modules[i] = bp_module;
+					modules[i].readFromNBT(moduleTag);
 				}catch(Exception e)
 				{
-					
+					LogHelper.logWarning("Error while loading a backpack module");
 				}
-				//instantiate the module from nbtdata
-				modules[i].readFromNBT(moduleTag);
 			}
 		}
 	}

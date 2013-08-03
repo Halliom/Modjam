@@ -18,4 +18,9 @@ public class LogHelper
 		log.log(Level.SEVERE, message);
 	}
 	
+	public static void logWarning(String message)
+	{
+		log.log(Level.WARNING, message);
+	}
+	
 }
