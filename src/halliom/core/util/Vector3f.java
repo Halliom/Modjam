@@ -1,5 +1,7 @@
 package halliom.core.util;
 
+import net.minecraft.util.Vec3;
+
 public class Vector3f 
 {
 	
@@ -12,6 +14,13 @@ public class Vector3f
 		this.x = x;
 		this.y = y;
 		this.z = z;
+	}
+	
+	public Vector3f(Vec3 vec)
+	{
+		this.x = (float) vec.xCoord;
+		this.y = (float) vec.yCoord;
+		this.z = (float) vec.zCoord;
 	}
 	
 	public float length()
@@ -29,6 +38,41 @@ public class Vector3f
 	public Vector3f add(Vector3f vector)
 	{
 		 return new Vector3f(x + vector.getX(), y + vector.getY(), z + vector.getZ());
+	}
+	
+	public Vector3f add(float amount)
+	{
+		return new Vector3f(x + amount, y + amount, z + amount);
+	}
+	
+	public Vector3f sub(Vector3f vector)
+	{
+		 return new Vector3f(x - vector.getX(), y - vector.getY(), z - vector.getZ());
+	}
+	
+	public Vector3f sub(float amount)
+	{
+		return new Vector3f(x - amount, y - amount, z - amount);
+	}
+	
+	public Vector3f mul(Vector3f vector)
+	{
+		 return new Vector3f(x * vector.getX(), y * vector.getY(), z * vector.getZ());
+	}
+	
+	public Vector3f mul(float amount)
+	{
+		return new Vector3f(x * amount, y * amount, z * amount);
+	}
+	
+	public Vector3f div(Vector3f vector)
+	{
+		 return new Vector3f(x / vector.getX(), y / vector.getY(), z / vector.getZ());
+	}
+	
+	public Vector3f div(float amount)
+	{
+		return new Vector3f(x / amount, y / amount, z / amount);
 	}
 	
 	public float getX() 

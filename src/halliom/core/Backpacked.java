@@ -1,6 +1,7 @@
 package halliom.core;
 
 import halliom.common.backpack.BackpackTickHandler;
+import halliom.common.block.Blocks;
 import halliom.common.item.Items;
 import halliom.core.packet.PacketHandler;
 import cpw.mods.fml.common.Mod;
@@ -37,6 +38,8 @@ public class Backpacked
 	{
 		//Instantiate the items and register them
 		Items.initializeItems();
+		
+		Blocks.initializeBlocks();
 		
 		//Register the rendering for all entities
 		proxy.registerEntityRendering();

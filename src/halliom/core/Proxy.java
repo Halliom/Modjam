@@ -17,6 +17,11 @@ public class Proxy
 		
 	}
 	
+	public void registerTileRendering()
+	{
+		
+	}
+	
 	public void registerKeyBindingHandler()
 	{
 		
