@@ -1,8 +1,8 @@
 package halliom.client.gui.special;
 
-import net.minecraftforge.common.ForgeDirection;
 import halliom.core.util.Box;
 import halliom.core.util.Vector3f;
+import net.minecraftforge.common.ForgeDirection;
 
 public class GuiImage3D extends GuiObject3D
 {

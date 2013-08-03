@@ -12,7 +12,9 @@ public class Gui3D
 	
 //	private Vector3f[] rotations = new Vector3f[]{new Vector3f(0,0,1), new Vector3f(1,0,0), new Vector3f(0,0,-1), new Vector3f(-1,0,0)};
 	
-	private ForgeDirection face; 
+	public static Gui3D openGUI;
+	
+	private int face; 
 	
 	private Vector3f worldPos;
 	
@@ -20,10 +22,10 @@ public class Gui3D
 	
 	public Gui3D(ForgeDirection face, Vector3f worldPos) 
 	{
-		this.face = face;
+		openGUI = this;
+		this.face = face.ordinal();
 		this.worldPos = worldPos;
 		objects.add(new GuiImage3D(new Box(new Vector3f(0,1,0), new Vector3f(1,1,1)), "textures/gui/container/generic_54.png"));
-		Gui3DHandler.openGui(player, this);
 	}
 	
 	public void handleClick(Vector3f lookVec, int face)
@@ -41,7 +43,7 @@ public class Gui3D
 	{
 		for (GuiObject3D comp : objects)
 		{
-			comp.render(x, y, z, f, face.getOpposite());
+			comp.render(x, y, z, f, ForgeDirection.getOrientation(face).getOpposite());
 		}
 	}
 	
