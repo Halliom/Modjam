@@ -7,6 +7,7 @@ import halliom.core.util.Box;
 import halliom.core.util.Vector3f;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.ForgeDirection;
 
 public abstract class GuiObject3D 
 {
@@ -18,7 +19,7 @@ public abstract class GuiObject3D
 		this.boundingBox = boundingBox;
 	}
 	
-	public abstract void render(double x, double y, double z, float f);
+	public abstract void render(double x, double y, double z, float f, ForgeDirection face);
 	
 	public boolean isVectorInside(Vector3f vector)
 	{
@@ -27,7 +28,7 @@ public abstract class GuiObject3D
 	
 	public abstract void handleClick(Vector3f vector);
 	
-	protected void drawTexture(float x, float y, float z, float width, float height, String texture)
+	protected void drawTextureNorth(float x, float y, float z, float width, float height, String texture)
 	{
 		FMLClientHandler.instance().getClient().renderEngine.func_110577_a(new ResourceLocation(texture));
 		GL11.glPushMatrix();
@@ -45,7 +46,7 @@ public abstract class GuiObject3D
         GL11.glPopMatrix();
 	}
 	
-	protected void drawTextureFromVector(Box boundingBox, Vector3f translation, float width, float height, String texture)
+	protected void drawTextureNorthFromVector(Box boundingBox, Vector3f translation, float width, float height, String texture)
 	{
 		FMLClientHandler.instance().getClient().renderEngine.func_110577_a(new ResourceLocation(texture));
 		GL11.glPushMatrix();
@@ -61,6 +62,75 @@ public abstract class GuiObject3D
 			tessellator.addVertexWithUV(sumVec.getX() + width, sumVec.getY() + height, sumVec.getZ(), 0, 0);
 			tessellator.addVertexWithUV(sumVec.getX() + width, sumVec.getY(), sumVec.getZ(), 0, 1);
 			tessellator.addVertexWithUV(sumVec.getX(), sumVec.getY(), sumVec.getZ(), 1, 1);
+			tessellator.draw();
+			GL11.glDisable(GL11.GL_BLEND);
+		}
+        GL11.glEnable(GL11.GL_CULL_FACE);
+        GL11.glPopMatrix();
+	}
+	
+	protected void drawTextureSouthFromVector(Box boundingBox, Vector3f translation, float width, float height, String texture)
+	{
+		FMLClientHandler.instance().getClient().renderEngine.func_110577_a(new ResourceLocation(texture));
+		GL11.glPushMatrix();
+		GL11.glDisable(GL11.GL_CULL_FACE);
+		{
+			GL11.glEnable(GL11.GL_BLEND);
+			GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+			Vector3f sumVec = boundingBox.getStartPos().add(translation);
+			Tessellator tessellator = Tessellator.instance;
+			tessellator.startDrawingQuads();
+			GL11.glColor4f(1, 1, 1, 0.7f);
+			tessellator.addVertexWithUV(sumVec.getX(), sumVec.getY() + height, sumVec.getZ() + width, 1, 0);
+			tessellator.addVertexWithUV(sumVec.getX() + width, sumVec.getY() + height, sumVec.getZ() + width, 0, 0);
+			tessellator.addVertexWithUV(sumVec.getX() + width, sumVec.getY(), sumVec.getZ() + width, 0, 1);
+			tessellator.addVertexWithUV(sumVec.getX(), sumVec.getY(), sumVec.getZ() + width, 1, 1);
+			tessellator.draw();
+			GL11.glDisable(GL11.GL_BLEND);
+		}
+        GL11.glEnable(GL11.GL_CULL_FACE);
+        GL11.glPopMatrix();
+	}
+	
+	protected void drawTextureWestFromVector(Box boundingBox, Vector3f translation, float width, float height, String texture)
+	{
+		FMLClientHandler.instance().getClient().renderEngine.func_110577_a(new ResourceLocation(texture));
+		GL11.glPushMatrix();
+		GL11.glDisable(GL11.GL_CULL_FACE);
+		{
+			GL11.glEnable(GL11.GL_BLEND);
+			GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+			Vector3f sumVec = boundingBox.getStartPos().add(translation);
+			Tessellator tessellator = Tessellator.instance;
+			tessellator.startDrawingQuads();
+			GL11.glColor4f(1, 1, 1, 0.7f);
+			tessellator.addVertexWithUV(sumVec.getX(), sumVec.getY() + height, sumVec.getZ() + width, 1, 0);
+			tessellator.addVertexWithUV(sumVec.getX(), sumVec.getY() + height, sumVec.getZ(), 0, 0);
+			tessellator.addVertexWithUV(sumVec.getX(), sumVec.getY(), sumVec.getZ(), 0, 1);
+			tessellator.addVertexWithUV(sumVec.getX(), sumVec.getY(), sumVec.getZ() + width, 1, 1);
+			tessellator.draw();
+			GL11.glDisable(GL11.GL_BLEND);
+		}
+        GL11.glEnable(GL11.GL_CULL_FACE);
+        GL11.glPopMatrix();
+	}
+	
+	protected void drawTextureEastFromVector(Box boundingBox, Vector3f translation, float width, float height, String texture)
+	{
+		FMLClientHandler.instance().getClient().renderEngine.func_110577_a(new ResourceLocation(texture));
+		GL11.glPushMatrix();
+		GL11.glDisable(GL11.GL_CULL_FACE);
+		{
+			GL11.glEnable(GL11.GL_BLEND);
+			GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+			Vector3f sumVec = boundingBox.getStartPos().add(translation);
+			Tessellator tessellator = Tessellator.instance;
+			tessellator.startDrawingQuads();
+			GL11.glColor4f(1, 1, 1, 0.7f);
+			tessellator.addVertexWithUV(sumVec.getX() + width, sumVec.getY() + height, sumVec.getZ(), 1, 0);
+			tessellator.addVertexWithUV(sumVec.getX() + width, sumVec.getY() + height, sumVec.getZ() + width, 0, 0);
+			tessellator.addVertexWithUV(sumVec.getX() + width, sumVec.getY(), sumVec.getZ() + width, 0, 1);
+			tessellator.addVertexWithUV(sumVec.getX() + width, sumVec.getY(), sumVec.getZ(), 1, 1);
 			tessellator.draw();
 			GL11.glDisable(GL11.GL_BLEND);
 		}

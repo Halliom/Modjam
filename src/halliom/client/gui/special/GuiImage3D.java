@@ -1,5 +1,6 @@
 package halliom.client.gui.special;
 
+import net.minecraftforge.common.ForgeDirection;
 import halliom.core.util.Box;
 import halliom.core.util.Vector3f;
 
@@ -15,9 +16,23 @@ public class GuiImage3D extends GuiObject3D
 	}
 
 	@Override
-	public void render(double x, double y, double z, float f) 
+	public void render(double x, double y, double z, float f, ForgeDirection face) 
 	{
-		drawTextureFromVector(getBoundingBox(), new Vector3f((float) x, (float) y, (float) z), 1, 1, image);
+//		System.out.println(face);
+		switch(face)
+		{
+			case NORTH:
+				drawTextureNorthFromVector(getBoundingBox(), new Vector3f((float) x, (float) y, (float) z), 1, 1, image);
+				break;
+			case SOUTH:
+				drawTextureSouthFromVector(getBoundingBox(), new Vector3f((float) x, (float) y, (float) z), 1, 1, image);
+				break;
+			case WEST:
+				drawTextureWestFromVector(getBoundingBox(), new Vector3f((float) x, (float) y, (float) z), 1, 1, image);
+				break;
+			case EAST:
+				drawTextureEastFromVector(getBoundingBox(), new Vector3f((float) x, (float) y, (float) z), 1, 1, image);
+		}
 	}
 
 	@Override
