@@ -1,5 +1,6 @@
 package halliom.core;
 
+import halliom.common.backpack.BackpackTickHandler;
 import halliom.common.item.Items;
 import halliom.core.packet.PacketHandler;
 import cpw.mods.fml.common.Mod;
@@ -9,6 +10,8 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
+import cpw.mods.fml.common.registry.TickRegistry;
+import cpw.mods.fml.relauncher.Side;
 
 @Mod(modid = "Backpacked", name = "Backpacked", version = "DEV")
 @NetworkMod(channels = {"DAJO"}, clientSideRequired = true, serverSideRequired = false, packetHandler = PacketHandler.class)
@@ -39,5 +42,7 @@ public class Backpacked
 		
 		//Register the keybinding handler
 		proxy.registerKeyBindingHandler();
+		
+		proxy.registerTickHandler();
 	}
 }

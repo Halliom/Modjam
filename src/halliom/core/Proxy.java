@@ -1,5 +1,9 @@
 package halliom.core;
 
+import halliom.common.backpack.BackpackTickHandler;
+import cpw.mods.fml.common.registry.TickRegistry;
+import cpw.mods.fml.relauncher.Side;
+
 public class Proxy
 {
 	
@@ -16,6 +20,11 @@ public class Proxy
 	public void registerKeyBindingHandler()
 	{
 		
+	}
+	
+	public void registerTickHandler()
+	{	
+		TickRegistry.registerTickHandler(new BackpackTickHandler(), Side.SERVER);
 	}
 	
 }
