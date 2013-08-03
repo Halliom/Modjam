@@ -51,6 +51,11 @@ public class BackplateContainer
 			return item;
 	}
 	
+	public void reset()
+	{
+		inventory = new ItemStack[2];
+	}
+	
 	public ItemStack getLeftItem()
 	{
 		return inventory[0];

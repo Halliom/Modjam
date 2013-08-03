@@ -12,5 +12,5 @@ public class ItemBackPlate extends ItemArmor
 		super(id, material, render, 1);
 		setCreativeTab(CreativeTabs.tabCombat);
 	}
-
+	
 }
