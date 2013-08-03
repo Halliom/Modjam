@@ -22,7 +22,7 @@ public class ClickEventHandler
 				Vector3f lookVec = new Vector3f(event.entityPlayer.getLookVec());
 				Vector3f real = lookVec.mul(lookDist).add(new Vector3f((float) event.entityPlayer.posX, (float) event.entityPlayer.posY, (float) event.entityPlayer.posZ));
 				
-				Gui3DHandler.getOpenGui(event.entityPlayer).handleClick(real, event.face);
+				Gui3DHandler.getOpenGui(event.entityPlayer).handleClick(real, face);
 			}
 		}
 	}
