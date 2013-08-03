@@ -59,9 +59,9 @@ public class BackpackModule
 	
 	private static void register(BackpackModule module)
 	{
-		if (classMap.containsKey(module.getUID()))
+		if (!classMap.containsKey(module.getUID()))
 		{
-			
+			classMap.put(module.getUID(), module.getClass());
 		}
 	}
 }
