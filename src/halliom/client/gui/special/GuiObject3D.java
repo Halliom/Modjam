@@ -53,10 +53,10 @@ public abstract class GuiObject3D
 			GL11.glDisable(GL11.GL_CULL_FACE);
 			Tessellator tessellator = Tessellator.instance;
 			tessellator.startDrawingQuads();
-			tessellator.addVertexWithUV(x, y + height, z, 0, 1);
-			tessellator.addVertexWithUV(x + width, y + height, z, 1, 1);
-			tessellator.addVertexWithUV(x + width, y, z, 1, 0);
-			tessellator.addVertexWithUV(x, y, z, 0, 0);
+			tessellator.addVertexWithUV(vector.getX(), vector.getY() + height, z, 0, 1);
+			tessellator.addVertexWithUV(vector.getX() + width, y + height, z, 1, 1);
+			tessellator.addVertexWithUV(vector.getX() + width, y, z, 1, 0);
+			tessellator.addVertexWithUV(vector.getX(), y, z, 0, 0);
 			tessellator.draw();
 		}
         GL11.glEnable(GL11.GL_CULL_FACE);
