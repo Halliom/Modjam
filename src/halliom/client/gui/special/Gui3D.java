@@ -13,12 +13,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 
 public class Gui3D 
-{
-	
-//	private Vector3f[] rotations = new Vector3f[]{new Vector3f(0,0,1), new Vector3f(1,0,0), new Vector3f(0,0,-1), new Vector3f(-1,0,0)};
-	
-	public static Gui3D openGUI;
-	
+{	
 	private int face; 
 	
 	private Vector3f worldPos;
@@ -27,10 +22,8 @@ public class Gui3D
 	
 	public Gui3D(ForgeDirection face, Vector3f worldPos) 
 	{
-		openGUI = this;
 		this.face = face.ordinal();
 		this.worldPos = worldPos;
-		objects.add(new GuiImage3D(new Box(new Vector3f(0,0,0), new Vector3f(1,1,1)), "textures/gui/container/generic_54.png"));
 	}
 	
 	public void handleClick(Vector3f lookVec, int face, EntityPlayer player)
@@ -42,8 +35,22 @@ public class Gui3D
 		{
 			Box box = comp.getBoundingBox();
 			if (lookVec != null && playerPos != null)
-				if (comp.isVectorInside(comp.translateBox(worldPos), lookVec, playerPos)) System.out.println("Hoooraaaaayyy");
+			{
+				float clickPos = comp.isVectorInside(comp.translateBox(worldPos), lookVec, playerPos);
+				System.out.println(clickPos);
+				if (clickPos != -1) System.out.println("Hoooraaaaayyy");
+			}
 		}
+	}
+	
+	public void onOpen()
+	{
+		
+	}
+	
+	public void onDestroy()
+	{
+		
 	}
 	
 	public void draw(double x, double y, double z, float f)

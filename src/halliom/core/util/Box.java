@@ -33,8 +33,31 @@ public class Box
 				if (start[i] < b1[i] || start[i] > b2[i])
 					intersects = false;
 			}
+			else
+			{
+				f1 = (b1[i] - start[i])/dir[i];
+				f2 = (b2[i] - start[i])/dir[i];
+				if (f1 > f2)
+				{
+					temp = f1;
+					f1 = f2;
+					f2 = temp;
+				}
+				if (f1 > tnear)
+					tnear = f1;
+				if (f2 < tfar)
+					tfar = f2;
+				if (tnear > tfar)
+					intersects = false;
+				if (tfar < 0)
+					intersects = false;
+			}
 		}
-			
+		if(!intersects)
+			cube = -1;
+		else
+			cube = tnear;
+		return cube;
 	}
 
 	public Vector3f getStartPos() 
