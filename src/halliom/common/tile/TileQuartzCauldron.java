@@ -19,6 +19,9 @@ public class TileQuartzCauldron extends TileEntity
 {
 	
 	private List prevPlayers = new ArrayList();
+	private EntityPlayer prevPlayer;
+	
+	private long ticks;
 	
 	private ForgeDirection facing = ForgeDirection.NORTH;
 	
@@ -31,27 +34,33 @@ public class TileQuartzCauldron extends TileEntity
 	public void updateEntity() 
 	{
 		//TODO fix this shit
-		List players = worldObj.getEntitiesWithinAABB(EntityLiving.class, getArea());
-		for (Object o : players)
-		if (!players.equals(prevPlayers))
+//		List players = worldObj.getEntitiesWithinAABB(EntityLiving.class, getArea());
+//		for (Object o : players)
+//		if (!players.equals(prevPlayers))
+//		{
+//			for (int i = 0; i < players.size(); i++)
+//			{
+//				if (i < prevPlayers.size())
+//					if (prevPlayers.get(i) != players.get(i))
+//					{
+//						if (Gui3DHandler.has3DGuiOpen((EntityPlayer) players.get(i)))
+//							Gui3DHandler.closeGui((EntityPlayer) players.get(i));
+//						else
+//							Gui3DHandler.openGui((EntityPlayer) players.get(i), getGui());
+//					}
+//			}
+//		}
+		ticks++;
+		if (ticks > 20)
 		{
-			for (int i = 0; i < players.size(); i++)
+			EntityPlayer player = worldObj.getClosestPlayer(xCoord, yCoord, zCoord, 4);
+			if (player != null)
 			{
-				if (i < prevPlayers.size())
-					if (prevPlayers.get(i) != players.get(i))
-					{
-						if (Gui3DHandler.has3DGuiOpen((EntityPlayer) players.get(i)))
-							Gui3DHandler.closeGui((EntityPlayer) players.get(i));
-						else
-							Gui3DHandler.openGui((EntityPlayer) players.get(i), getGui());
-					}
+				if (!Gui3DHandler.has3DGuiOpen(player))
+					//				Gui3DHandler.closeGui(player);
+					Gui3DHandler.openGui(player, getGui());
 			}
 		}
-		EntityPlayer player = worldObj.getClosestPlayer(xCoord, yCoord, zCoord, 4);
-		if (Gui3DHandler.has3DGuiOpen(player))
-			Gui3DHandler.closeGui(player);
-		else
-			Gui3DHandler.openGui(player, getGui());
 	}
 	
 	private Gui3D getGui()

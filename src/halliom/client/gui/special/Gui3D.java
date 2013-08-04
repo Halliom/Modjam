@@ -5,6 +5,10 @@ import halliom.core.util.Vector3f;
 
 import java.util.ArrayList;
 
+import org.lwjgl.opengl.GL11;
+
+import cpw.mods.fml.client.FMLClientHandler;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityTNTPrimed;
 import net.minecraft.entity.player.EntityPlayer;
@@ -14,15 +18,15 @@ import net.minecraftforge.common.ForgeDirection;
 
 public class Gui3D 
 {	
-	private int face; 
+	protected ForgeDirection face; 
 	
 	private Vector3f worldPos;
 	
-	private ArrayList<GuiObject3D> objects = new ArrayList<GuiObject3D>();
+	protected ArrayList<GuiObject3D> objects = new ArrayList<GuiObject3D>();
 	
 	public Gui3D(ForgeDirection face, Vector3f worldPos) 
 	{
-		this.face = face.ordinal();
+		this.face = face;
 		this.worldPos = worldPos;
 	}
 	
@@ -50,14 +54,14 @@ public class Gui3D
 	
 	public void onDestroy()
 	{
-		
+		Gui3DHandler.deleteGui(FMLClientHandler.instance().getClient().thePlayer);
 	}
 	
 	public void draw(double x, double y, double z, float f)
 	{
 		for (GuiObject3D comp : objects)
 		{
-			comp.render(x, y, z, f, ForgeDirection.getOrientation(face).getOpposite());
+			comp.render(x, y, z, f, face.getOpposite());
 		}
 	}
 	

@@ -42,6 +42,16 @@ public class Vector3f
 		return (float) Math.sqrt(x * x + y * y + z * z);
 	}
 	
+	public Vector3f interceptsOnAxisXY(Vector3f endPos, float posZ)
+	{
+		float distX = endPos.x - x;
+		float distY = endPos.y - y;
+		float distZ = endPos.z - z;
+		
+		
+		return this;
+	}
+	
 	public Vector3f normalize()
 	{
 		float length = length();

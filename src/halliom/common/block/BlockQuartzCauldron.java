@@ -1,6 +1,8 @@
 package halliom.common.block;
 
+import cpw.mods.fml.client.FMLClientHandler;
 import halliom.client.ClientProxy;
+import halliom.client.gui.special.Gui3DHandler;
 import halliom.common.tile.TileQuartzCauldron;
 import halliom.core.Backpacked;
 import net.minecraft.block.BlockContainer;
@@ -49,6 +51,12 @@ public class BlockQuartzCauldron extends BlockContainer
 				tile.setFacing(ForgeDirection.WEST);
 				break;
 		}
+	}
+	
+	@Override
+	public void onBlockDestroyedByPlayer(World par1World, int par2, int par3, int par4, int par5) 
+	{
+		Gui3DHandler.closeGui(FMLClientHandler.instance().getClient().thePlayer);
 	}
 	
 	@Override

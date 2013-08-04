@@ -40,9 +40,9 @@ public abstract class GuiObject3D
 	
 	public abstract void handleClick(Vector3f vector);
 	
-	protected void drawTextureNorth(float x, float y, float z, float width, float height, String texture)
+	protected void drawTextureNorth(float x, float y, float z, float width, float height, ResourceLocation texture)
 	{
-		FMLClientHandler.instance().getClient().renderEngine.func_110577_a(new ResourceLocation(texture));
+		FMLClientHandler.instance().getClient().renderEngine.func_110577_a(texture);
 		GL11.glPushMatrix();
 		{
 			GL11.glDisable(GL11.GL_CULL_FACE);
@@ -58,9 +58,9 @@ public abstract class GuiObject3D
         GL11.glPopMatrix();
 	}
 	
-	protected void drawTextureNorthFromVector(Box boundingBox, Vector3f translation, String texture)
+	protected void drawTextureNorthFromVector(Box boundingBox, Vector3f translation, ResourceLocation texture)
 	{
-		FMLClientHandler.instance().getClient().renderEngine.func_110577_a(new ResourceLocation(texture));
+		FMLClientHandler.instance().getClient().renderEngine.func_110577_a(texture);
 		GL11.glPushMatrix();
 		GL11.glDisable(GL11.GL_CULL_FACE);
 		{
@@ -83,9 +83,9 @@ public abstract class GuiObject3D
         GL11.glPopMatrix();
 	}
 	
-	protected void drawTextureSouthFromVector(Box boundingBox, Vector3f translation, String texture)
+	protected void drawTextureSouthFromVector(Box boundingBox, Vector3f translation, ResourceLocation texture)
 	{
-		FMLClientHandler.instance().getClient().renderEngine.func_110577_a(new ResourceLocation(texture));
+		FMLClientHandler.instance().getClient().renderEngine.func_110577_a(texture);
 		GL11.glPushMatrix();
 		GL11.glDisable(GL11.GL_CULL_FACE);
 		{
@@ -108,9 +108,9 @@ public abstract class GuiObject3D
         GL11.glPopMatrix();
 	}
 	
-	protected void drawTextureWestFromVector(Box boundingBox, Vector3f translation, String texture)
+	protected void drawTextureWestFromVector(Box boundingBox, Vector3f translation, ResourceLocation texture)
 	{
-		FMLClientHandler.instance().getClient().renderEngine.func_110577_a(new ResourceLocation(texture));
+		FMLClientHandler.instance().getClient().renderEngine.func_110577_a(texture);
 		GL11.glPushMatrix();
 		GL11.glDisable(GL11.GL_CULL_FACE);
 		{
@@ -133,9 +133,9 @@ public abstract class GuiObject3D
         GL11.glPopMatrix();
 	}
 	
-	protected void drawTextureEastFromVector(Box boundingBox, Vector3f translation, String texture)
+	protected void drawTextureEastFromVector(Box boundingBox, Vector3f translation, ResourceLocation texture)
 	{
-		FMLClientHandler.instance().getClient().renderEngine.func_110577_a(new ResourceLocation(texture));
+		FMLClientHandler.instance().getClient().renderEngine.func_110577_a(texture);
 		GL11.glPushMatrix();
 		GL11.glDisable(GL11.GL_CULL_FACE);
 		{

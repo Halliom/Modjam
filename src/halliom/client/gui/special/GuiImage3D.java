@@ -2,14 +2,15 @@ package halliom.client.gui.special;
 
 import halliom.core.util.Box;
 import halliom.core.util.Vector3f;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.ForgeDirection;
 
 public class GuiImage3D extends GuiObject3D
 {
 
-	private String image;
+	private ResourceLocation image;
 	
-	public GuiImage3D(Box boundingBox, String image) 
+	public GuiImage3D(Box boundingBox, ResourceLocation image) 
 	{
 		super(boundingBox);
 		this.image = image;
