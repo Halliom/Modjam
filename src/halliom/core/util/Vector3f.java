@@ -23,6 +23,20 @@ public class Vector3f
 		this.z = (float) vec.zCoord;
 	}
 	
+	public float dot(Vector3f vec)
+	{
+		return x * vec.getX() + y * vec.getY() + z * vec.getZ();
+	}
+	
+	public Vector3f cross(Vector3f vec)
+	{
+		float x_ = y * vec.getZ() - z * vec.getY();
+		float y_ = z * vec.getX() - x * vec.getZ();
+		float z_ = x * vec.getY() - y * vec.getX();
+		
+		return new Vector3f(x_, y_, z_);
+	}
+	
 	public float length()
 	{
 		return (float) Math.sqrt(x * x + y * y + z * z);
@@ -31,8 +45,30 @@ public class Vector3f
 	public Vector3f normalize()
 	{
 		float length = length();
+		System.out.println("VecLook normalize: " + this);
 		
 		return new Vector3f(x / length, y / length, z / length);
+	}
+	
+	public Vector3f shorten(Vector3f vector)
+	{
+		Vector3f vec = new Vector3f(x,y,z);
+		vec = vec.normalize();
+		vec.mul(vector);
+		return new Vector3f(x,y,z).sub(vec);
+	}
+	
+	public Vector3f shorten(float amount)
+	{
+		Vector3f vec = new Vector3f(x,y,z);
+		vec = vec.normalize();
+		vec.mul(amount);
+		return new Vector3f(x,y,z).sub(vec);
+	}
+	
+	public float[] toArray()
+	{
+		return new float[]{x,y,z};
 	}
 	
 	public Vector3f add(Vector3f vector)

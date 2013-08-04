@@ -25,7 +25,7 @@ public class ClickEventHandler
 				
 //				event.entityPlayer.worldObj.spawnEntityInWorld(new EntityTNTPrimed(event.entityPlayer.worldObj, (float) real.getX(), (float) real.getY(), real.getZ(), event.entityPlayer));
 				//Gui3DHandler.getOpenGui(event.entityPlayer).handleClick(real, face);
-				Gui3D.openGUI.handleClick(real, face);
+				Gui3D.openGUI.handleClick(lookVec, face, event.entityPlayer);
 			}
 		}
 	}

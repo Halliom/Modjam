@@ -21,18 +21,15 @@ public abstract class GuiObject3D
 	
 	public abstract void render(double x, double y, double z, float f, ForgeDirection face);
 	
-	public boolean isVectorInside(Vector3f vector)
+	public boolean isVectorInside(Vector3f direction, Vector3f position)
 	{
-		return boundingBox.isVectorInSide(vector);
+		return boundingBox.isVectorInSide(direction, position);
 	}
 	
-	public boolean isVectorInside(Box box, Vector3f vector)
-	{
-		System.out.println("Starting vector maths");
-		System.out.println("Vector " + vector);
-		System.out.println("StartVec: " + box.getStartPos());
-		System.out.println("EndVec: " + box.getEndPos());
-		return box.isVectorInSide(vector);
+	public boolean isVectorInside(Box box, Vector3f direction, Vector3f postion)
+	{	
+		box.isVectorInSide(direction, position);
+		return false;
 	}
 	
 	public Box translateBox(Vector3f pos)

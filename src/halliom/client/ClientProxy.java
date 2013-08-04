@@ -1,5 +1,6 @@
 package halliom.client;
 
+import halliom.client.render.BackItemRenderer;
 import halliom.client.render.QuartzCauldronRenderer;
 import halliom.common.tile.TileQuartzCauldron;
 import halliom.core.Proxy;

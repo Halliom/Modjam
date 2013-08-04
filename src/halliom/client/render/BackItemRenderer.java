@@ -1,5 +1,6 @@
-package halliom.client;
+package halliom.client.render;
 
+import halliom.common.backpack.Backpack;
 import halliom.common.backpack.BackpackData;
 import halliom.common.backpack.BackplateContainer;
 import halliom.common.item.ItemBackPlate;
@@ -27,7 +28,7 @@ public class BackItemRenderer extends RenderPlayer
 	private boolean hadBackplate = false;
 	private boolean hasBackplate = false;
 	
-	private IModelCustom backPackModel = AdvancedModelLoader.loadModel("/Backpack.obj");
+	private IModelCustom backPackModel = AdvancedModelLoader.loadModel("/model/Backpack.obj");
 	
 	public BackItemRenderer() 
 	{
@@ -66,13 +67,16 @@ public class BackItemRenderer extends RenderPlayer
 			
 			rotateItemAccordingToPlayer((EntityPlayer)entity);
 			
-			if (container.getLeftItem() != null && container.getLeftItem().getItem() instanceof ItemBackpack)
+			//if container.getLeftItem() != null && container.getLeftItem().getItem() instanceof ItemBackpack
+			if (container.getBackpack() != null)
 			{
 				FMLClientHandler.instance().getClient().renderEngine.func_110577_a(new ResourceLocation("textures/gui/widgets.png"));
 				GL11.glColor3f(1.0f, 1.0f, 1.0f);
 				GL11.glRotatef(180, 0, 1, 0);
 				GL11.glTranslatef(-0.45f, -0.7f, 1.0f);
 				backPackModel.renderAll();
+				Backpack bp = container.getBackpack();
+				bp.render();
 			}
 			else
 			{

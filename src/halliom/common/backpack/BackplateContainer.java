@@ -17,6 +17,11 @@ public class BackplateContainer
 	
 	private Backpack backpack;
 	
+	public BackplateContainer() 
+	{
+		backpack = new Backpack();
+	}
+	
 	public ItemStack performSwitch(int pos, ItemStack item)
 	{
 		if (item == null)
@@ -85,6 +90,16 @@ public class BackplateContainer
 	public ItemStack getRightItem()
 	{
 		return inventory[1];
+	}
+
+	public Backpack getBackpack() 
+	{
+		return backpack;
+	}
+
+	public void setBackpack(Backpack backpack) 
+	{
+		this.backpack = backpack;
 	}
 	
 }

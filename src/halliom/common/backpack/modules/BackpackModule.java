@@ -31,6 +31,11 @@ public class BackpackModule
 		return type;
 	}
 	
+	public void render()
+	{
+		
+	}
+	
 	public void onUpdate()
 	{
 		
@@ -51,7 +56,7 @@ public class BackpackModule
 		return needsUpdate;
 	}
 
-	private void setNeedsUpdate(boolean needsUpdate) 
+	protected void setNeedsUpdate(boolean needsUpdate) 
 	{
 		this.needsUpdate = needsUpdate;
 	}

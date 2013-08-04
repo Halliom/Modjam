@@ -1,6 +1,7 @@
 package halliom.common.backpack;
 
 import halliom.common.backpack.modules.BackpackModule;
+import halliom.common.backpack.modules.ModuleBucketSupplier;
 import halliom.core.LogHelper;
 import net.minecraft.nbt.NBTTagCompound;
 
@@ -12,6 +13,7 @@ public class Backpack
 	public Backpack() 
 	{
 		modules = new BackpackModule[3];
+		modules[BackpackModule.TYPE_DOWN] = new ModuleBucketSupplier();
 		register(this);
 	}
 	
@@ -19,6 +21,15 @@ public class Backpack
 	{
 		this.modules = modules;
 		register(this);
+	}
+	
+	public void render()
+	{
+		for (int i = 0; i < modules.length; i++)
+		{
+			if (modules[i] != null)
+				modules[i].render();
+		}
 	}
 	
 	public void update()

@@ -12,12 +12,29 @@ public class Box
 		this.endPos = endPos;
 	}
 	
-	public boolean isVectorInSide(Vector3f vector)
+	public float isVectorInSide(Vector3f direction, Vector3f position)
 	{
-		if (!(vector.getX() >= startPos.getX()) || !(vector.getX() <= endPos.getX())) return false;
-		if (!(vector.getY() >= startPos.getY()) || !(vector.getY() <= endPos.getY())) return false;
-		if (!(vector.getZ() >= startPos.getZ()) || !(vector.getZ() <= endPos.getZ())) return false;
-		return true;
+		float f1, f2;
+		float tnear = -1000.0f;
+		float tfar = 1000.0f;
+		float temp, cube;
+		
+		float[] dir = direction.toArray();
+		float[] b1 = startPos.toArray();
+		float[] b2 = endPos.toArray();
+		float[] start = position.toArray();
+		
+		boolean intersects = true;
+		
+		for (byte i = 0; i < 3; i++)
+		{
+			if (dir[i] == 0)
+			{
+				if (start[i] < b1[i] || start[i] > b2[i])
+					intersects = false;
+			}
+		}
+			
 	}
 
 	public Vector3f getStartPos() 

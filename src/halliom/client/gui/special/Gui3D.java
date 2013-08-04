@@ -5,6 +5,11 @@ import halliom.core.util.Vector3f;
 
 import java.util.ArrayList;
 
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.item.EntityTNTPrimed;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 
 public class Gui3D 
@@ -28,17 +33,16 @@ public class Gui3D
 		objects.add(new GuiImage3D(new Box(new Vector3f(0,0,0), new Vector3f(1,1,1)), "textures/gui/container/generic_54.png"));
 	}
 	
-	public void handleClick(Vector3f lookVec, int face)
+	public void handleClick(Vector3f lookVec, int face, EntityPlayer player)
 	{
+		Vector3f playerPos = new Vector3f((float) player.posX, (float) player.posY + 1, (float) player.posZ);
+		float reach = 4.0f;
+		
 		for (GuiObject3D comp : objects)
 		{
-			Vector3f lookShortened = null;
-			System.out.println("Face: " + face + " dist " + (lookVec.getZ() - worldPos.getZ()));
-			if (face == 0 && lookVec.getZ() - worldPos.getZ() >= 0)
-				lookShortened = lookVec.sub(new Vector3f(0, 0, lookVec.getZ() - worldPos.getZ()));
-			
-			if (lookShortened != null && comp.isVectorInside(comp.translateBox(worldPos), lookShortened)) System.out.println("Hoooraaaaayyy");
-			System.out.println(lookShortened);
+			Box box = comp.getBoundingBox();
+			if (lookVec != null && playerPos != null)
+				if (comp.isVectorInside(comp.translateBox(worldPos), lookVec, playerPos)) System.out.println("Hoooraaaaayyy");
 		}
 	}
 	
