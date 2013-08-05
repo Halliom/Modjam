@@ -1,10 +1,13 @@
 package halliom.common.backpack.modules;
 
+import net.minecraftforge.client.model.AdvancedModelLoader;
+import net.minecraftforge.client.model.IModelCustom;
+
 
 public class ModuleBucketSupplier extends BackpackModule 
 {
 	
-//	private IModelCustom model = AdvancedModelLoader.loadModel("/model/Furteliser2.obj");
+	private IModelCustom model = AdvancedModelLoader.loadModel("/model/bucket2.obj");
 	
 	public ModuleBucketSupplier() 
 	{
@@ -15,7 +18,7 @@ public class ModuleBucketSupplier extends BackpackModule
 	@Override
 	public void render() 
 	{
-//		model.renderAll();
+		model.renderAll();
 	}
 	
 }

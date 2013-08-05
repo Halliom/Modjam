@@ -42,14 +42,81 @@ public class Vector3f
 		return (float) Math.sqrt(x * x + y * y + z * z);
 	}
 	
-	public Vector3f interceptsOnAxisXY(Vector3f endPos, float posZ)
+	public Vector3f interceptOnAxisYZ(Vector3f endPos, float posX)
 	{
 		float distX = endPos.x - x;
 		float distY = endPos.y - y;
 		float distZ = endPos.z - z;
 		
+		if (distX == 0)
+			return null;
+		
+		float d = (posX - x) / distX;
+		
+		if (isInBetween(d, -0.00001f, 0.00001f))
+			return this;
+		
+		if (!isInBetween(d, 0, 1))
+			return null;
+		
+		x = posX;
+		y += d * distY;
+		z += d * distZ;
 		
 		return this;
+	}
+	
+	public Vector3f interceptOnAxisXZ(Vector3f endPos, float posY)
+	{
+		float distX = endPos.x - x;
+		float distY = endPos.y - y;
+		float distZ = endPos.z - z;
+		
+		if (distY == 0)
+			return null;
+		
+		float d = (posY - y) / distY;
+		
+		if (isInBetween(d, -0.00001f, 0.00001f))
+			return this;
+		
+		if (!isInBetween(d, 0, 1))
+			return null;
+		
+		x += d * distX;
+		y = posY;
+		z += d * distZ;
+		
+		return this;
+	}
+	
+	public Vector3f interceptOnAxisXY(Vector3f endPos, float posZ)
+	{
+		float distX = endPos.x - x;
+		float distY = endPos.y - y;
+		float distZ = endPos.z - z;
+		
+		if (distZ == 0)
+			return null;
+		
+		float d = (posZ - z) / distZ;
+		
+		if (isInBetween(d, -0.00001f, 0.00001f))
+			return this;
+		
+		if (!isInBetween(d, 0, 1))
+			return null;
+		
+		x += d * distX;
+		y += d * distY;
+		z = posZ;
+		
+		return this;
+	}
+	
+	private boolean isInBetween(float number, float min, float max)
+	{
+		return min >= number && number <= max;
 	}
 	
 	public Vector3f normalize()
