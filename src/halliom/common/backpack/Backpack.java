@@ -78,6 +78,11 @@ public class Backpack
 		}
 	}
 	
+	public BackpackModule getModule(int slot)
+	{
+		return modules != null && slot >= 0 && slot < modules.length ? modules[slot] : null;
+	}
+	
 	public NBTTagCompound destroy()
 	{
 		NBTTagCompound result = new NBTTagCompound();

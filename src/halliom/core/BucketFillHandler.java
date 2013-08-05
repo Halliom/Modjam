@@ -1,6 +1,6 @@
 package halliom.core;
 
-public class BucketFillHandler 
+public class BucketFillHandler
 {
 	
 }

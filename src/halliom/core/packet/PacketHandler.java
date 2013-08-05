@@ -16,7 +16,8 @@ public class PacketHandler implements IPacketHandler
 	
 	public static enum PacketType
 	{
-		SWITCH(PacketSwitch.class);
+		SWITCH(PacketSwitch.class),
+		OPENBACKPACK(PacketOpenBackPack.class);
 		
 		private Class clazz;
 		
@@ -40,13 +41,21 @@ public class PacketHandler implements IPacketHandler
 		{
 			int id = data.readInt();
 			
-			PacketSwitch pkt = new PacketSwitch();
-			pkt.readPacketData(data);
-			pkt.performPacketAction(player);
-//			break;
+			switch(id)
+			{
+				case 0:
+					PacketSwitch pkt = new PacketSwitch();
+					pkt.readPacketData(data);
+					pkt.performPacketAction(player);
+					break;
+				case 1:
+					PacketOpenBackPack pktOpenBackpack = new PacketOpenBackPack();
+					pktOpenBackpack.readPacketData(data);
+					pktOpenBackpack.performPacketAction(player);
+					break;
+			}
 		}catch(Exception e)
 		{
-			
 		}
 	}
 	

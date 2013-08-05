@@ -1,8 +1,10 @@
 package halliom.core.keybinding;
 
 import halliom.common.backpack.BackpackData;
-import halliom.common.backpack.BackplateContainer;
+import halliom.common.item.ItemBackPlate;
+import halliom.core.Backpacked;
 import halliom.core.packet.PacketHandler;
+import halliom.core.packet.PacketOpenBackPack;
 import halliom.core.packet.PacketSwitch;
 
 import java.util.ArrayList;
@@ -51,6 +53,17 @@ public class KeyBindingHandler extends KeyHandler
 				{
 					PacketDispatcher.sendPacketToServer(PacketHandler.getPacket(new PacketSwitch(1)));
 				}
+				if (kb.keyDescription.equals("Open backpack"))
+				{
+					EntityPlayer c_player = FMLClientHandler.instance().getClient().thePlayer;
+					
+					if (BackpackData.playerData.containsKey(c_player) && c_player.inventory.armorInventory[2].getItem() instanceof ItemBackPlate)
+					{
+						c_player.openGui(Backpacked.instance, 0, c_player.worldObj, (int)c_player.posX, (int)c_player.posY, (int)c_player.posZ);
+					}
+					
+					PacketDispatcher.sendPacketToServer(PacketHandler.getPacket(new PacketOpenBackPack()));
+				}
 			}
 		}
 	}
@@ -71,6 +84,8 @@ public class KeyBindingHandler extends KeyHandler
 	{
 		keyBinds.add(new KeyBinding("Change Slot 1", Keyboard.KEY_Z));
 		keyBinds.add(new KeyBinding("Change Slot 2", Keyboard.KEY_X));
+		keyBinds.add(new KeyBinding("Open backpack", Keyboard.KEY_F));
+		repeatings.add(false);
 		repeatings.add(false);
 		repeatings.add(false);
 		return keyBinds.toArray(new KeyBinding[keyBinds.size()]);

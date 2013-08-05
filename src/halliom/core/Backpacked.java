@@ -1,9 +1,10 @@
 package halliom.core;
 
-import net.minecraftforge.common.MinecraftForge;
+import halliom.client.gui.GuiHandler;
 import halliom.common.block.Blocks;
 import halliom.common.item.Items;
 import halliom.core.packet.PacketHandler;
+import net.minecraftforge.common.MinecraftForge;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -11,6 +12,7 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
+import cpw.mods.fml.common.network.NetworkRegistry;
 
 @Mod(modid = "Backpacked", name = "Backpacked", version = "DEV")
 @NetworkMod(channels = {"DAJO"}, clientSideRequired = true, serverSideRequired = false, packetHandler = PacketHandler.class)
@@ -36,6 +38,7 @@ public class Backpacked
 		//Instantiate the items and register them
 		Items.initializeItems();
 		
+		//Instantiate the blocks and register them
 		Blocks.initializeBlocks();
 		
 		MinecraftForge.EVENT_BUS.register(new ClickEventHandler());
@@ -51,5 +54,7 @@ public class Backpacked
 		
 		//Registers the tickhandler for the backpacks
 		proxy.registerTickHandler();
+		
+		NetworkRegistry.instance().registerGuiHandler(this, new GuiHandler());
 	}
 }
